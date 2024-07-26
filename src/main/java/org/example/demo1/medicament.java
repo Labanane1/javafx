@@ -24,4 +24,6 @@ abstract class Medicament {
     }
 
     public abstract String getType();
+
+    public abstract String getDosage();
 }

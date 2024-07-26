@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class GestionPharmacie {
+public class GestionPharmacie {
     private Map<String, Medicament> medicaments;
     private Connection connection;
 
@@ -14,6 +14,31 @@ class GestionPharmacie {
         medicaments = new HashMap<>();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacie", "root", "");
+            loadAllMedicaments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadAllMedicaments() {
+        try {
+            String query = "SELECT * FROM medicaments";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String nom = rs.getString("nom");
+                double prix = rs.getDouble("prix");
+                String type = rs.getString("type");
+                Medicament medicament;
+                if (type.equals("Ordonnance")) {
+                    String dosage = rs.getString("dosage");
+                    medicament = new MedicamentOrdonnance(id, nom, prix, dosage);
+                } else {
+                    medicament = new MedicamentVenteLibre(id, nom, prix);
+                }
+                medicaments.put(id, medicament);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,28 +115,6 @@ class GestionPharmacie {
     }
 
     public List<Medicament> listerTousLesMedicaments() {
-        List<Medicament> result = new ArrayList<>();
-        try {
-            String query = "SELECT * FROM medicaments";
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String nom = rs.getString("nom");
-                double prix = rs.getDouble("prix");
-                String type = rs.getString("type");
-                Medicament medicament;
-                if (type.equals("Ordonnance")) {
-                    String dosage = rs.getString("dosage");
-                    medicament = new MedicamentOrdonnance(id, nom, prix, dosage);
-                } else {
-                    medicament = new MedicamentVenteLibre(id, nom, prix);
-                }
-                result.add(medicament);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return new ArrayList<>(medicaments.values());
     }
 }

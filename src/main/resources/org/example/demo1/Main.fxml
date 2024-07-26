@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.MainController">
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu text="Menu">
+                    <items>
+                        <MenuItem text="Ajouter Médicament" onAction="#handleAddMedicament"/>
+                        <MenuItem text="Supprimer Médicament" onAction="#handleDeleteMedicament"/>
+                        <MenuItem text="Rechercher Médicament" onAction="#handleSearchMedicament"/>
+                        <MenuItem text="Lister Médicaments" onAction="#handleListAllMedicaments"/>
+                        <MenuItem text="Lister par Lettre" onAction="#handleListMedicamentsByLetter"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <Label text="Bienvenue dans la gestion de la pharmacie" styleClass="header-label"/>
+    </center>
+
+
+</BorderPane>

@@ -1,6 +1,6 @@
 package org.example.demo1;
 
-class MedicamentOrdonnance extends Medicament {
+public class MedicamentOrdonnance extends Medicament {
     private String dosage;
 
     public MedicamentOrdonnance(String id, String nom, double prix, String dosage) {
@@ -8,12 +8,17 @@ class MedicamentOrdonnance extends Medicament {
         this.dosage = dosage;
     }
 
+    @Override
+    public String getType() {
+        return "Ordonnance";
+    }
+
+    @Override
     public String getDosage() {
         return dosage;
     }
 
-    @Override
-    public String getType() {
-        return "Ordonnance";
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
     }
 }

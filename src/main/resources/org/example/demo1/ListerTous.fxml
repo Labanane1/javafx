@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.example.demo1.ListerTousController">
+    <Label text="Lister Tous les Médicaments" textFill="#004094">
+        <font>
+            <Font name="Times New Roman Bold" size="22"/>
+        </font>
+    </Label>
+    <TableView fx:id="tableView"/>
+    <TextArea fx:id="resultArea" editable="false"/>
+    <Button text="Retour" onAction="#goBack"/>
+</AnchorPane>

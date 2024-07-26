@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.example.demo1.AjouterController">
+    <TableView fx:id="tableView">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <!-- Add other columns as needed -->
+        </columns>
+    </TableView>
+    <Label text="Ajouter Médicament" textFill="#004094">
+        <font>
+            <Font name="Times New Roman Bold" size="22"/>
+        </font>
+    </Label>
+    <TextField fx:id="idField" promptText="ID"/>
+    <TextField fx:id="nomField" promptText="Nom"/>
+    <TextField fx:id="prixField" promptText="Prix"/>
+    <TextField fx:id="typeField" promptText="Type (Vente Libre/Ordonnance)"/>
+    <TextField fx:id="dosageField" promptText="Dosage (si applicable)"/>
+    <Button fx:id="addButton" text="Ajouter" onAction="#ajouterMedicament" />
+    <TextArea fx:id="resultArea" editable="false"/>
+    <Button text="Retour" onAction="#goBack" />
+</VBox>

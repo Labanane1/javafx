@@ -1,6 +1,7 @@
 package org.example.demo1;
 
-class MedicamentVenteLibre extends Medicament {
+public class MedicamentVenteLibre extends Medicament {
+
     public MedicamentVenteLibre(String id, String nom, double prix) {
         super(id, nom, prix);
     }
@@ -9,5 +10,9 @@ class MedicamentVenteLibre extends Medicament {
     public String getType() {
         return "Vente Libre";
     }
-}
 
+    @Override
+    public String getDosage() {
+        return null;  // Vente Libre does not have dosage
+    }
+}

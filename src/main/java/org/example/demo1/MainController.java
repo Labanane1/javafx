@@ -1,101 +1,118 @@
 package org.example.demo1;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class MainController {
-    @FXML
-    private TextField idField;
-    @FXML
-    private TextField nomField;
-    @FXML
-    private TextField prixField;
-    @FXML
-    private TextField typeField;
-    @FXML
-    private TextField dosageField;
-    @FXML
-    private TextArea resultArea;
-    @FXML
-    private TableView<Medicament> tableView;
-    @FXML
-    private TableColumn<Medicament, String> idColumn;
-    @FXML
-    private TableColumn<Medicament, String> nomColumn;
-    @FXML
-    private TableColumn<Medicament, Double> prixColumn;
-    @FXML
-    private TableColumn<Medicament, String> typeColumn;
-    @FXML
-    private TableColumn<Medicament, String> dosageColumn;
+    private GestionPharmacie gestionPharmacie;
 
-    private GestionPharmacie gestionPharmacie = new GestionPharmacie();
-    private ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
-
-    @FXML
-    private void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prixColumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        dosageColumn.setCellValueFactory(new PropertyValueFactory<>("dosage"));
-
-        tableView.setItems(medicamentList);
+    public MainController() {
+        this.gestionPharmacie = new GestionPharmacie();
     }
 
+    // Méthode pour gérer l'ajout de médicament
     @FXML
-    private void ajouterMedicament() {
-        String id = idField.getText();
-        String nom = nomField.getText();
-        double prix = Double.parseDouble(prixField.getText());
-        String type = typeField.getText();
-        Medicament medicament;
-        if (type.equalsIgnoreCase("Ordonnance")) {
-            String dosage = dosageField.getText();
-            medicament = new MedicamentOrdonnance(id, nom, prix, dosage);
-        } else {
-            medicament = new MedicamentVenteLibre(id, nom, prix);
-        }
-        gestionPharmacie.ajouterMedicament(medicament);
-        medicamentList.add(medicament);
-        resultArea.setText("Médicament ajouté avec succès!");
+    private void handleAddMedicament() {
+        loadPage("/org/example/demo1/ajouter.fxml");
     }
 
+    // Méthode pour gérer la suppression de médicament
     @FXML
-    private void supprimerMedicament() {
-        String id = idField.getText();
-        gestionPharmacie.supprimerMedicament(id);
-        medicamentList.removeIf(m -> m.getId().equals(id));
-        resultArea.setText("Médicament supprimé avec succès!");
+    private void handleDeleteMedicament() {
+        loadPage("/org/example/demo1/supprimer.fxml");
     }
 
+    // Méthode pour gérer la recherche de médicament
     @FXML
-    private void rechercherMedicament() {
-        String id = idField.getText();
-        Medicament medicament = gestionPharmacie.rechercherMedicamentParId(id);
-        if (medicament != null) {
-            resultArea.setText("Nom: " + medicament.getNom() + ", Prix: " + medicament.getPrix() + ", Type: " + medicament.getType());
-        } else {
-            resultArea.setText("Médicament non trouvé.");
+    private void handleSearchMedicament() {
+        loadPage("/org/example/demo1/rechercher.fxml");
+    }
+
+    // Méthode pour lister tous les médicaments
+    @FXML
+    private void handleListAllMedicaments() {
+        loadPage("/org/example/demo1/lister.fxml");
+    }
+
+    // Méthode pour lister les médicaments par lettre
+    @FXML
+    private void handleListMedicamentsByLetter() {
+        loadPage("/org/example/demo1/lister_par_lettre.fxml");
+    }
+
+    // Méthode privée pour charger une page donnée
+    private void loadPage(String fxmlFile) {
+        try {
+            // Charger le fichier FXML correspondant
+            URL fxmlLocation = getClass().getResource(fxmlFile);
+            if (fxmlLocation == null) {
+                throw new IOException(STR."FXML file not found: \{fxmlFile}");
+            }
+
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            Parent root = loader.load();
+
+            // Passer l'instance de GestionPharmacie aux contrôleurs des nouvelles pages
+            BaseController controller = loader.getController();
+            if (controller != null) {
+                controller.setGestionPharmacie(gestionPharmacie);
+            }
+
+            // Créer une nouvelle scène et stage pour la nouvelle page
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            // Ajouter la feuille de style CSS
+            URL cssLocation = getClass().getResource("/org/example/demo1/styles.css");
+            if (cssLocation != null) {
+                scene.getStylesheets().add(cssLocation.toExternalForm());
+            } else {
+                System.err.println("CSS file not found: /org/example/demo1/styles.css");
+            }
+
+            // Configurer et afficher la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    // Setter pour injecter l'instance de GestionPharmacie
+    public void setGestionPharmacie(GestionPharmacie gestionPharmacie) {
+        this.gestionPharmacie = gestionPharmacie;
+    }
+
+    // Méthodes d'action
     @FXML
-    private void listerMedicamentsParLettre() {
-        char lettre = nomField.getText().charAt(0);
-        medicamentList.clear();
-        medicamentList.addAll(gestionPharmacie.listerMedicamentsParLettre(lettre));
+    private void supprimerMedicament(ActionEvent actionEvent) {
+        handleDeleteMedicament();
     }
 
     @FXML
-    private void listerTousLesMedicaments() {
-        medicamentList.clear();
-        medicamentList.addAll(gestionPharmacie.listerTousLesMedicaments());
+    private void ajouterMedicament(ActionEvent actionEvent) {
+        handleAddMedicament();
+    }
+
+    @FXML
+    private void rechercherMedicament(ActionEvent actionEvent) {
+        handleSearchMedicament();
+    }
+
+    @FXML
+    private void listerMedicamentsParLettre(ActionEvent actionEvent) {
+        handleListMedicamentsByLetter();
+    }
+
+    @FXML
+    private void listerTousLesMedicaments(ActionEvent actionEvent) {
+        handleListAllMedicaments();
     }
 }

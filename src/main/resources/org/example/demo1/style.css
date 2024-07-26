@@ -1,0 +1,159 @@
+/* styles.css */
+
+.root {
+    -fx-background-color: aliceblue;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+.label {
+    -fx-text-fill: #004094;
+    -fx-font-family: "Times New Roman", serif;
+    -fx-font-size: 22px;
+    -fx-padding: 5px 10px;
+}
+
+.text-field, .text-area, .button {
+    -fx-background-color: white;
+    -fx-border-color: #004094;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: deepskyblue;
+}
+
+.button {
+    -fx-background-color: skyblue;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: deepskyblue;
+    -fx-text-fill: white;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkblue;
+    -fx-padding: 15px;
+    -fx-alignment: center;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-background-color: lightgray;
+    -fx-border-radius: 10px;
+    -fx-border-color: darkblue;
+    -fx-border-width: 2px;
+}
+
+.menu-button {
+    -fx-font-size: 16px;
+    -fx-background-color: skyblue;
+    -fx-text-fill: black;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: darkblue;
+    -fx-border-width: 2px;
+    -fx-font-family: "Courier New", monospace;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: aliceblue;
+    -fx-text-fill: darkblue;
+}
+
+.footer-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: gray;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-font-family: "Helvetica", sans-serif;
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 5px;
+}
+
+/* styles.css */
+
+.root {
+    -fx-background-color: aliceblue;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+.label {
+    -fx-text-fill: #004094;
+    -fx-font-family: "Times New Roman", serif;
+    -fx-font-size: 22px;
+    -fx-padding: 5px 10px;
+}
+
+.text-field, .text-area, .button {
+    -fx-background-color: white;
+    -fx-border-color: #004094;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: deepskyblue;
+}
+
+.button {
+    -fx-background-color: skyblue;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: deepskyblue;
+    -fx-text-fill: white;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkblue;
+    -fx-padding: 15px;
+    -fx-alignment: center;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-background-color: lightgray;
+    -fx-border-radius: 10px;
+    -fx-border-color: darkblue;
+    -fx-border-width: 2px;
+}
+
+.menu-button {
+    -fx-font-size: 16px;
+    -fx-background-color: skyblue;
+    -fx-text-fill: black;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: darkblue;
+    -fx-border-width: 2px;
+    -fx-font-family: "Courier New", monospace;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: aliceblue;
+    -fx-text-fill: darkblue;
+}
+
+.footer-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: gray;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-font-family: "Helvetica", sans-serif;
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 5px;
+    -fx-pref-width: 100%; /* Pour centrer le label dans la partie inférieure */
+    -fx-text-alignment: center; /* Centrer le texte */
+}
