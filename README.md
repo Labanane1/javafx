@@ -7,3 +7,4 @@ On utilise la technologie javafx pour la création d'interface graphique
 ![WhatsApp Image 2024-08-06 at 00 19 25 (2)](https://github.com/user-attachments/assets/9097bbf8-f106-481d-8c17-caef0359eb21)
 ![WhatsApp Image 2024-08-06 at 00 19 25 (1)](https://github.com/user-attachments/assets/8ca204cd-b05e-4822-8b67-fd6d7a26fb2e)
 ![WhatsApp Image 2024-08-06 at 00 19 25](https://github.com/user-attachments/assets/5e36ec9f-d1e6-41c6-a4e4-86163694f0cd)
+ le code est contenue sur les deux branches (main et jm)
