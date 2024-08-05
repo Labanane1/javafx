@@ -1,0 +1,1 @@
+notre application fait en java, s'occupe de la gestion d'une pharmacie, elle inclut l'ajout de médicament, la suppréssion et l'affichage de médicaments par lettres ainsi que l'affichage de tous les médicaments
